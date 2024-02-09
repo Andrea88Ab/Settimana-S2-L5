@@ -1,0 +1,68 @@
+
+CREATE TABLE ANAGRAFICA (
+  idanagrafica INT PRIMARY KEY,
+  Cognome VARCHAR(255),
+  Nome VARCHAR(255),
+  Indirizzo VARCHAR(255),
+  Città VARCHAR(255),
+  CAP VARCHAR(5),
+  Cod_Fisc VARCHAR(16)
+);
+
+CREATE TABLE TIPO_VIOLAZIONE (
+  idviolazione INT PRIMARY KEY,
+  descrizione VARCHAR(255)
+);
+
+
+CREATE TABLE VERBALE (
+  idverbale INT PRIMARY KEY,
+  DataViolazione DATE,
+  IndirizzoViolazione VARCHAR(255),
+  Nominativo_Agente VARCHAR(255),
+  DataTrascrizioneVerbale DATE,
+  Importo DECIMAL(10, 2),
+  DecurtamentoPunti INT,
+  idanagrafica INT,
+  idviolazione INT,
+  FOREIGN KEY (idanagrafica) REFERENCES ANAGRAFICA(idanagrafica),
+  FOREIGN KEY (idviolazione) REFERENCES TIPO_VIOLAZIONE(idviolazione)
+);
+
+
+-- Inserting sample data into ANAGRAFICA
+INSERT INTO ANAGRAFICA (idanagrafica, Cognome, Nome, Indirizzo, Città, CAP, Cod_Fisc) VALUES
+(1, 'Ferrari', 'Giovanni', 'Viale Lazio 99', 'Roma', '41056', 'GVNGNN85A01F205R'),
+(2, 'Esposito', 'Francesco', 'Strada Provinciale 89', 'Palermo', '33101', 'NGLNGA80A01Z404V'),
+(3, 'Greco', 'Angelo', 'Strada Provinciale 23', 'Firenze', '41836', 'RSSMRA80A01H501U'),
+(4, 'Bianchi', 'Angelo', 'Piazza Napoli 35', 'Catania', '12468', 'LBRLBR80A01Z404X'),
+(5, 'Ferrari', 'Giovanni', 'Piazza Napoli 65', 'Bologna', '34345', 'SRGSRG75A01H501P'),
+(6, 'Esposito', 'Sergio', 'Piazza Napoli 33', 'Catania', '29129', 'FRNCSR80A01L219H'),
+(7, 'Ricci', 'Roberto', 'Viale Lazio 37', 'Napoli', '38664', 'LBRLBR80A01Z404X'),
+(8, 'Ferrari', 'Luca', 'Piazza Napoli 94', 'Roma', '18695', 'FRNCSR80A01L219H'),
+(9, 'Marino', 'Roberto', 'Piazza Napoli 89', 'Bologna', '39083', 'GPPGPP85A01H501S'),
+(10, 'Ferrari', 'Francesco', 'Viale Lazio 39', 'Milano', '13455', 'SRGSRG75A01H501P');
+
+-- Inserting sample data into TIPO_VIOLAZIONE
+INSERT INTO TIPO_VIOLAZIONE (idviolazione, descrizione) VALUES
+(1, 'Eccesso di velocità'),
+(2, 'Sosta vietata'),
+(3, 'Semaforo rosso'),
+(4, 'Guida senza cintura'),
+(5, 'Uso del cellulare alla guida'),
+(6, 'Guida in stato di ebbrezza'),
+(7, 'Sorpasso pericoloso'),
+(8, 'Mancato rispetto dei limiti di rumore'),
+(9, 'Circolazione su corsie riservate'),
+(10, 'Mancanza di revisione');
+
+-- Inserting sample data into VERBALE
+INSERT INTO VERBALE (idverbale, DataViolazione, IndirizzoViolazione, Nominativo_Agente, DataTrascrizioneVerbale, Importo, DecurtamentoPunti, idanagrafica, idviolazione) VALUES
+(1, '2024-01-09', 'Strada Provinciale 18', 'Agente01', '2024-01-11', 416.85, 2, 10, 7),
+(2, '2024-02-22', 'Viale Lazio 6', 'Agente02', '2024-02-24', 439.77, 7, 2, 3),
+(3, '2024-02-01', 'Viale Lazio 52', 'Agente03', '2024-02-04', 212.24, 9, 4, 5),
+(4, '2024-01-22', 'Piazza Napoli 79', 'Agente04', '2024-01-23', 129.94, 1, 9, 5),
+(5, '2024-01-07', 'Viale Lazio 85', 'Agente05', '2024-01-08', 232.57, 9, 7, 6),
+(6, '2024-02-01', 'Piazza Napoli 43', 'Agente06', '2024-02-04', 92.48, 2, 7, 9),
+(7, '2024-02-25', 'Piazza Napoli
+

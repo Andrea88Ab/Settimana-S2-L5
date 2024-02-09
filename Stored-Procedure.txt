@@ -1,0 +1,33 @@
+
+
+CREATE PROCEDURE GetContravvenzioniByYear
+    @Year INT
+AS
+BEGIN
+    SELECT *
+    FROM VERBALE
+    WHERE YEAR(DataViolazione) = @Year;
+END;
+
+
+CREATE PROCEDURE GetTotalPointsDeductedOnDate
+    @Date DATE
+AS
+BEGIN
+    SELECT SUM(DecurtamentoPunti) AS TotalPointsDeducted
+    FROM VERBALE
+    WHERE DataViolazione = @Date;
+END;
+
+
+CREATE PROCEDURE DeleteVerbaleById
+    @idverbale INT
+AS
+BEGIN
+    DELETE FROM VERBALE
+    WHERE idverbale = @idverbale;
+END;
+
+
+
+
